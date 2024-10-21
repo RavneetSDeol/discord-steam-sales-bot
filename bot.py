@@ -36,3 +36,8 @@ def get_steam_sales():
         return response.json().get("specials", {}).get("items", [])
     else:
         return []
+    
+if __name__ == "__main__":
+    bot = MyBot()
+    TOKEN = os.getenv("DISCORD_TOKEN") # Load token from environment variables
+    bot.run(TOKEN)
