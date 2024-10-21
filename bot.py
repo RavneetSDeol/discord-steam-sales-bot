@@ -45,7 +45,7 @@ if __name__ == "__main__":
             f"**{sale['name']}** - {sale['discount_percent']}% off! "
             f"Now: ${(sale['final_price'] / 100):.2f} (was ${(sale['original_price'] / 100):.2f})"
             for sale in sales[:100]
-        ])  # Limit to 5 sales
+        ])  # Limit to 100 sales
         
         await interaction.response.send_message(f"Here are the current Steam sales:\n{sale_list}")
 
