@@ -1,8 +1,12 @@
 import discord
 from discord import app_commands
+from discord.ext import commands
 import requests
 from dotenv import load_dotenv
 import os
+
+# Load environment variables from the .env file
+load_dotenv()
 
 # Set up the bot and commands
 class MyBot(discord.Client):
@@ -12,21 +16,7 @@ class MyBot(discord.Client):
 
     async def on_ready(self):
         print(f"Bot logged in as {self.user}") # Print when the bot is logged in
-        self.tree.sync() # Sync the commands with Discord
-
-# Create the slash command
-@bot.tree.command(name="steamsales", description="View current Steam sales")
-async def steamsales(interaction: discord.Interaction):
-    # Fetch Steam sales
-    sales = get_steam_sales()
-
-    if not sales:
-        await interaction.response.send_message("Sorry, I couldn't retrieve any sales at the moment.")
-        return
-    
-    # Format the response
-    sale_list = "\n".join([f"**{sale['name']}** - {sale['discount_percent']}% off!" for sale in sales[:5]]) # Limit to 5 sales
-    await interaction.response.send_message(f"Here at the current Steam sales:\n{sale_list}")
+        await self.tree.sync() # Sync the commands with Discord
 
 # Function to fetch Steam sales data
 def get_steam_sales():
@@ -39,5 +29,26 @@ def get_steam_sales():
     
 if __name__ == "__main__":
     bot = MyBot()
+
+    # Create the slash command
+    @bot.tree.command(name="steamsales", description="View current Steam sales")
+    async def steamsales(interaction: discord.Interaction):
+        # Fetch Steam sales
+        sales = get_steam_sales()
+
+        if not sales:
+            await interaction.response.send_message("Sorry, I couldn't retrieve any sales at the moment.")
+            return
+    
+        # Format the response
+        sale_list = "\n".join([
+            f"**{sale['name']}** - {sale['discount_percent']}% off! "
+            f"Now: ${(sale['final_price'] / 100):.2f} (was ${(sale['original_price'] / 100):.2f})"
+            for sale in sales[:100]
+        ])  # Limit to 5 sales
+        
+        await interaction.response.send_message(f"Here are the current Steam sales:\n{sale_list}")
+
+    
     TOKEN = os.getenv("DISCORD_TOKEN") # Load token from environment variables
     bot.run(TOKEN)
