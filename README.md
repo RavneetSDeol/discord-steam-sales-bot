@@ -15,7 +15,31 @@ A simple Discord bot that fetches and displays the latest Steam sales using a sl
 - `requests`
 - `python-dotenv`
 
-Install dependencies with:
+🔧 Setup
+1. Clone the repository:
+git clone https://github.com/yourusername/steam-sales-discord-bot.git
+cd steam-sales-discord-bot
 
-```bash
-pip install -r requirements.txt
+2. Create a .env file in the root directory and add your bot token:
+DISCORD_TOKEN=your_discord_bot_token_here
+
+3. Run the bot:
+python main.py
+
+Once the bot is online, use the /steamsales command in any server it's invited to.
+
+📜 Example Output
+Here are the current Steam sales:
+**Half-Life: Alyx** - 60% off! Now: $23.99 (was $59.99)
+**Cyberpunk 2077** - 50% off! Now: $29.99 (was $59.99)
+...
+
+🧠 Notes
+* The bot uses app_commands.CommandTree to register slash commands.
+* The command output is limited to the first 100 sales for readability.
+* Steam API responses may vary depending on region or availability.
+
+🚀 Future Improvements
+* Add filters for genre, price range, or publisher.
+* Include embedded messages for a cleaner UI.
+* Add a scheduled daily update to post top sales automatically.
