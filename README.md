@@ -18,13 +18,13 @@ A simple Discord bot that fetches and displays the latest Steam sales using a sl
 🔧 Setup
 1. Clone the repository:
 git clone https://github.com/yourusername/steam-sales-discord-bot.git
-cd steam-sales-discord-bot
+cd steam-sales-discord-bot  
 
 2. Create a .env file in the root directory and add your bot token:
-DISCORD_TOKEN=your_discord_bot_token_here
+DISCORD_TOKEN=your_discord_bot_token_here  
 
 3. Run the bot:
-python main.py
+python main.py  
 
 Once the bot is online, use the /steamsales command in any server it's invited to.
 
