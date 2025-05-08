@@ -29,9 +29,9 @@ python main.py
 Once the bot is online, use the /steamsales command in any server it's invited to.
 
 📜 Example Output
-Here are the current Steam sales:
-**Half-Life: Alyx** - 60% off! Now: $23.99 (was $59.99)
-**Cyberpunk 2077** - 50% off! Now: $29.99 (was $59.99)
+\nHere are the current Steam sales:
+\n**Half-Life: Alyx** - 60% off! Now: $23.99 (was $59.99)
+\n**Cyberpunk 2077** - 50% off! Now: $29.99 (was $59.99)
 ...
 
 🧠 Notes
